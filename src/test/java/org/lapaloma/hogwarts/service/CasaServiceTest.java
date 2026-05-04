@@ -9,54 +9,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.lapaloma.hogwarts.dao.ICasaDAO;
-import org.lapaloma.hogwarts.excepcion.CasaNoEncontradaException;
-import org.lapaloma.hogwarts.vo.Casa;
+import org.lapaloma.gobierno.dao.IMinisterioDAO;
+import org.lapaloma.gobierno.service.MinisterioService;
+import org.lapaloma.gobierno.vo.Ministerio;
 
 class CasaServiceTest {
 
-    private CasaService casaService;
-    private FakeCasaDAO fakeDAO;
+    private MinisterioService ministerioService;
+    private FakeMinisterioDAO fakeDAO;
 
     @BeforeEach
     void setUp() {
-        fakeDAO = new FakeCasaDAO();
-        casaService = new CasaService(fakeDAO);
-    }
-
-    // =========================
-    // obtenerCasaPorClave
-    // =========================
-
-    @Test
-    void obtenerCasaPorClave_cuandoCodigoEsNull_lanzaExcepcion() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            casaService.obtenerCasaPorClave(null);
-        });
-    }
-
-    @Test
-    void obtenerCasaPorClave_cuandoCodigoEstaVacio_lanzaExcepcion() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            casaService.obtenerCasaPorClave(0);
-        });
-    }
-
-    @Test
-    void obtenerCasaPorClave_cuandoNoExiste_lanzaExcepcion() {
-        assertThrows(CasaNoEncontradaException.class, () -> {
-            casaService.obtenerCasaPorClave(99);
-        });
-    }
-
-    @Test
-    void obtenerCasaPorClave_cuandoExiste_retornaCasa() {
-        fakeDAO.crearCasa(new Casa(2, "Slytherin"));
-
-        Casa resultado = casaService.obtenerCasaPorClave(2);
-
-        assertNotNull(resultado);
-        assertEquals("Slytherin", resultado.getNombre());
+        fakeDAO = new FakeMinisterioDAO();
+        ministerioService = new MinisterioService(fakeDAO);
     }
 
     // =========================
@@ -64,102 +29,32 @@ class CasaServiceTest {
     // =========================
 
     @Test
-    void obtenerListaCasas_cuandoListaEstaVacia_lanzaExcepcion() {
+    void obtenerListaMinisterios_cuandoListaEstaVacio_lanzaExcepcion() {
         assertThrows(RuntimeException.class, () -> {
-            casaService.obtenerListaCasas();
+        	ministerioService.obtenerListaMinisterios();
         });
     }
 
     @Test
-    void obtenerListaCasas_cuandoHayDatos_retornaLista() {
-        fakeDAO.crearCasa(new Casa(2, "Slytherin"));
+    void obtenerListaMinistertio_cuandoHayDatos_retornaLista() {
+        fakeDAO.data.add(new Ministerio(1, "Ministerio de Defensa", 120000, 100000));
 
-        List<Casa> resultado = casaService.obtenerListaCasas();
+        List<Ministerio> resultado = ministerioService.obtenerListaMinisterios();
 
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
     }
+    
+    static class FakeMinisterioDAO implements IMinisterioDAO {
 
-    // =========================
-    // obtenerCasaPorNombre
-    // =========================
+        private List<Ministerio> data = new ArrayList<>();
 
-    @Test
-    void obtenerCasaPorNombre_cuandoNombreEsNull_lanzaExcepcion() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            casaService.obtenerCasaPorNombre(null);
-        });
-    }
-
-    @Test
-    void obtenerCasaPorNombre_cuandoNombreEstaVacio_lanzaExcepcion() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            casaService.obtenerCasaPorNombre("");
-        });
-    }
-
-    @Test
-    void obtenerCasaPorNombre_cuandoNoExiste_lanzaExcepcion() {
-        assertThrows(CasaNoEncontradaException.class, () -> {
-            casaService.obtenerCasaPorNombre("Inexistente");
-        });
-    }
-
-    @Test
-    void obtenerCasaPorNombre_cuandoExiste_retornaLista() {
-        fakeDAO.crearCasa(new Casa(2, "Slytherin"));
-
-        List<Casa> resultado = casaService.obtenerCasaPorNombre("Slytherin");
-
-        assertEquals(1, resultado.size());
-    }
-
-    // =========================
-    // Fake DAO. Se crea el DAO dentro del test para no depender de la conexión a la base de datos, de si hay red, de si accede a un fichero...
-    // En caso de usar el DOA real (CasaDaoJDBC) estaríamos hablando de prubeas de integración.
-    // =========================
-
-    static class FakeCasaDAO implements ICasaDAO {
-
-        private List<Casa> data = new ArrayList<>();
 
         @Override
-        public Casa obtenerCasaPorClave(int identificador) {
-            return data.stream()
-                    .filter(c -> c.getIdentificador()==identificador)
-                    .findFirst()
-                    .orElse(null);
-        }
-
-        @Override
-        public List<Casa> obtenerListaCasas() {
+        public List<Ministerio> obtenerListaMinisterios() {
             return new ArrayList<>(data);
         }
 
-        @Override
-        public List<Casa> obtenerCasaPorNombre(String nombre) {
-            List<Casa> resultado = new ArrayList<>();
-
-            for (Casa c : data) {
-                if (c.getNombre().equals(nombre)) {
-                    resultado.add(c);
-                }
-            }
-            return resultado;
-        }
-
-		@Override
-		public void actualizarCasa(Casa Casa) {
-		}
-
-		@Override
-		public void crearCasa(Casa Casa) {
-            data.add(Casa);
-		}
-
-		@Override
-		public void borrarCasa(Casa Casa) {
-			
-		}
     }
+
 }

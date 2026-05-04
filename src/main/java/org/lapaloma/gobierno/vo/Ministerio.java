@@ -1,29 +1,49 @@
-package org.lapaloma.hogwarts.vo;
+package org.lapaloma.gobierno.vo;
 
 /**
  *
- * Casa: Clase de persistencia que representa una Casa de Hogwarts.
+ * Casa: Clase de persistencia que representa una Ministerio de Gobierno.
  * 
  * @author Isidoro Nevares Martín - IES Virgen de la Paloma
  * @date 03 marzo 2026
  * 
  * 
  */
-public class Casa {
+public class Ministerio {
     private int identificador;
     private String nombre;
+    private double presupuesto;
+    private double gastos;
 
     /**
      * @param identificador
      * @param nombre
      */
-    public Casa(int identificador, String nombre) {
+    public Ministerio(int identificador, String nombre, double presupuesto, double gastos) {
         super();
         this.identificador = identificador;
         this.nombre = nombre;
+        this.presupuesto = presupuesto;
+        this.gastos = gastos;
     }
 
-    public Casa() {
+    public double getPresupuesto() {
+		return presupuesto;
+	}
+
+	public void setPresupuesto(double presupuesto) {
+		this.presupuesto = presupuesto;
+	}
+
+	public double getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(double gastos) {
+		this.gastos = gastos;
+	}
+
+	public Ministerio() {
     }
 
     public int getIdentificador() {
