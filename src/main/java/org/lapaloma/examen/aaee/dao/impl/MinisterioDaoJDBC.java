@@ -1,4 +1,4 @@
-package org.lapaloma.gobierno.dao.impl;
+package org.lapaloma.examen.aaee.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.lapaloma.gobierno.dao.IMinisterioDAO;
-import org.lapaloma.gobierno.vo.Ministerio;
+import org.lapaloma.examen.aaee.dao.IMinisterioDAO;
+import org.lapaloma.examen.aaee.vo.Ministerio;
 import org.springframework.stereotype.Repository;
 
 @Repository

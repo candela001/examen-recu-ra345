@@ -1,4 +1,4 @@
-package org.lapaloma.gobierno.excepcion;
+package org.lapaloma.examen.aaee.excepcion;
 
 public class MinisterioNoEncontradoException extends RuntimeException {
     /**

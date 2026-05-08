@@ -1,12 +1,12 @@
 /**
  * 
  */
-package org.lapaloma.gobierno.service;
+package org.lapaloma.examen.aaee.service;
 
 import java.util.List;
 
-import org.lapaloma.gobierno.dao.IMinisterioDAO;
-import org.lapaloma.gobierno.vo.Ministerio;
+import org.lapaloma.examen.aaee.dao.IMinisterioDAO;
+import org.lapaloma.examen.aaee.vo.Ministerio;
 import org.springframework.stereotype.Service;
 
 @Service

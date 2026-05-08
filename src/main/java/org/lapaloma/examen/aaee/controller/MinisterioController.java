@@ -1,12 +1,12 @@
 /**
  * 
  */
-package org.lapaloma.gobierno.controller;
+package org.lapaloma.examen.aaee.controller;
 
 import java.util.List;
 
-import org.lapaloma.gobierno.service.MinisterioService;
-import org.lapaloma.gobierno.vo.Ministerio;
+import org.lapaloma.examen.aaee.service.MinisterioService;
+import org.lapaloma.examen.aaee.vo.Ministerio;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package org.lapaloma.hogwarts.service;
+package org.lapaloma.examen.aaee.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.lapaloma.gobierno.dao.IMinisterioDAO;
-import org.lapaloma.gobierno.service.MinisterioService;
-import org.lapaloma.gobierno.vo.Ministerio;
+import org.lapaloma.examen.aaee.dao.IMinisterioDAO;
+import org.lapaloma.examen.aaee.service.MinisterioService;
+import org.lapaloma.examen.aaee.vo.Ministerio;
 
-class CasaServiceTest {
+class MinisterioServiceTest {
 
     private MinisterioService ministerioService;
     private FakeMinisterioDAO fakeDAO;

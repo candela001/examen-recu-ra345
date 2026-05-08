@@ -1,4 +1,4 @@
-package org.lapaloma.gobierno.vo;
+package org.lapaloma.examen.aaee.vo;
 
 /**
  *

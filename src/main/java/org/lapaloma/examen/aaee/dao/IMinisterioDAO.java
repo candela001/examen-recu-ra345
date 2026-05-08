@@ -1,8 +1,8 @@
-package org.lapaloma.gobierno.dao;
+package org.lapaloma.examen.aaee.dao;
 
 import java.util.List;
 
-import org.lapaloma.gobierno.vo.Ministerio;
+import org.lapaloma.examen.aaee.vo.Ministerio;
 
 public interface IMinisterioDAO {
 
